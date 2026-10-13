@@ -1,0 +1,56 @@
+@startuml
+class Product {
+    - id : Long
+    - name : String
+    - price : double
+    + Product()
+    + Product(id : Long, name : String, price : double)
+    + getId() : Long
+    + getName() : String
+    + getPrice() : double
+}
+
+class Customer {
+    - id : Long
+    - name : String
+    - email : String
+    - address : Address
+    + Customer()
+    + Customer(id : Long, name : String, email : String, address : Address)
+    + getId() : Long
+    + getName() : String
+    + getEmail() : String
+    + getAddress() : Address
+}
+
+class Address {
+    - street : String
+    - city : String
+    - postcode : String
+    + Address()
+    + Address(street : String, city : String, postcode : String)
+    + getStreet() : String
+    + getCity() : String
+    + getPostcode() : String
+}
+
+class ProductController {
+    - productService : ProductService
+    + ProductController(productService : ProductService)
+    + getAll() : List<Product>
+    + getById(id : Long) : Product
+}
+
+class ProductService {
+    - products : List<Product>
+    + getAll() : List<Product>
+    + getById(id : Long) : Product
+}
+
+' Tutorial 2
+Customer --> Address
+
+' Tutorial 3: both arrows point away from the controller, none point back
+ProductController ..> ProductService
+ProductService --> Product
+@enduml
